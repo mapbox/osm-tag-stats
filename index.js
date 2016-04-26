@@ -5,13 +5,23 @@ var path = require('path');
 var numFeatures = 0;
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
-var OSMID= [];
+var count = (argv.count) ? true : false;
+var geojson = (argv.geojson) ? true : false;
+var users = (argv.users) ? argv.users.split(",") : ["ruthmaben","jinalfoflia","saikabhi","Jothirnadh","aarthykc","pratikyadav","Chetan_Gowda","oini","ramyaragupathy","nikhilprabhakar","srividya_c","PlaneMad","manings","nammala","poornibadrinath","geohacker","shvrm","bkowshik","sanjayb","Arunasank"];
+var dates = (argv.date) ? argv.date.split(",") : false;
 
+var OSMID= [];
 
 tileReduce({
   zoom: 12,
   map: path.join(__dirname, 'map.js'),
-  sources: [{name: 'osm', mbtiles: path.join(__dirname, '../latest.planet.mbtiles')}]
+  sources: [{name: 'osm', mbtiles: path.join(__dirname, '../latest.planet.mbtiles')}],
+  mapOptions: { 
+    "count":count,
+    "geojson":geojson,
+    "dates":dates,
+    "users":users
+  }
 })
 .on('reduce', function(id) {
 OSMID = OSMID.concat(id);
