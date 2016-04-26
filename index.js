@@ -3,8 +3,11 @@
 var tileReduce = require('tile-reduce');
 var path = require('path');
 var numFeatures = 0;
-var _ =require('underscore');
+var argv = require('minimist')(process.argv.slice(2));
+var _ = require('underscore');
 var OSMID= [];
+
+
 tileReduce({
   zoom: 12,
   map: path.join(__dirname, 'map.js'),
