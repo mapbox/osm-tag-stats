@@ -6,7 +6,7 @@ module.exports = function (data, tile, writeData, done) {
     var dates = Boolean(mapOptions.dates) ? parseDates(mapOptions.dates) : false;
     var users = mapOptions.users;
     var result = layer.features.filter(function (val) {
-        if (mapOptions.date) {
+        if (mapOptions.dates) {
             var dateCondition = (val.properties['_timestamp'] && val.properties['_timestamp'] >= dates[0] && val.properties['_timestamp'] <= dates[1]);
         }
         if (users.indexOf(val.properties['_user']) > -1 && dateCondition) {
