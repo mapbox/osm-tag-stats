@@ -10,6 +10,18 @@ var users = (argv.users) ? argv.users.split(', ') : ['ruthmaben', 'jinalfoflia',
 var dates = (argv.date) ? argv.date.split(', ') : false;
 var OSMID = [];
 
+if ((!geojson && !count) || argv.help ) {
+    console.log('Queries OSM QA tiles to generate a geojson after applying the following filters.')
+    console.log('index.js --geojson [options]');
+    console.log('[options]:');
+    console.log('  --users="<osm-username-1","<osm-username-2","<osm-username-3" Defaults to the Mapbox team if nothing is specified');
+    console.log('  --dates="startDate[date2, date3, endDate]" Get geojson for user edits in a range of dates');
+    console.log('  --count returns total count of features added by a user');
+    console.log('  --help  Print this report');
+    console.log(' At least one of the --geojson or --count options must be present');
+    process.exit(0);
+}
+
 tileReduce({
     zoom: 12,
     map: path.join(__dirname, 'map.js'),
