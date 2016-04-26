@@ -6,8 +6,8 @@ var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
 var count = Boolean(argv.count);
 var geojson = Boolean(argv.geojson);
-var users = (argv.users) ? argv.users.split(', ') : ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank'];
-var dates = (argv.date) ? argv.date.split(', ') : false;
+var users = (argv.users) ? argv.users.split(',') : ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank'];
+var dates = (argv.date) ? argv.date.split(',') : false;
 var OSMID = [];
 
 if ((!geojson && !count) || argv.help ) {
