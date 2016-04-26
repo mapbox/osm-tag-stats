@@ -42,7 +42,12 @@ function parseDates(dates) {
         endDate.setDate(endDate.getDate() + 1);
         endDate.setHours(5);
         endDate.setMinutes(30);
+    } else {
+        startDate.setHours(5);
+        startDate.setMinutes(30);
+        endDate.setHours(5);
+        endDate.setMinutes(30);
     }
-
-    return [startDate.getTime(), endDate.getTime()];
+    //_timestamp in QA tiles is in seconds and not milliseconds
+    return [(startDate.getTime() / 1000), (endDate.getTime() / 1000)];
 }
