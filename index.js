@@ -55,7 +55,7 @@ tileReduce({
 });
 function init() {
    if(argv.geojson) {
-       argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
+       geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
    }
 //overwrite existing files?
 /*
@@ -76,17 +76,20 @@ function init() {
     }*/
 
     count = Boolean(argv.count);
+
     //filter
     if (argv.filter && fs.existsSync(argv.filter)) {
         tagFilter = JSON.parse(fs.readFileSync(argv.filter));
     } else {
         tagFilter = false;
     }
+
     //dates
     if (argv.dates) {
         dates = argv.date.split(',');
         trimStrings(dates);
     }
+
     //users
     if (argv.users && argv.users.toLowerCase() === 'mapbox') {
         users = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank'];
@@ -96,6 +99,7 @@ function init() {
     } else {
         users = false;
     }
+
     //path
     mbtilesPath = checkMBTiles(argv.mbtiles);
 
