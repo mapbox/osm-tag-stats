@@ -5,7 +5,7 @@ var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
-var count, geojson, users, dates, mbtilesPath;
+var count, geojson, users, dates, mbtilesPath, tagFilter;
 var OSMID = [];
 
 init();
@@ -31,7 +31,8 @@ tileReduce({
         'count': count,
         'geojson': geojson,
         'dates': dates,
-        'users': users
+        'users': users,
+        'tagFilter': tagFilter
     }
 })
 .on('reduce', function (id) {
@@ -49,7 +50,13 @@ function init() {
     count = Boolean(argv.count);
     geojson = Boolean(argv.geojson);
     dates = false;
-
+    //filter
+    if (argv.filter && fs.existsSync(argv.filter)) {
+        tagFilter = JSON.parse(fs.readFileSync(argv.filter));
+    } else {
+        tagFilter = false;
+    }
+    //dates
     if (argv.dates) {
         dates = argv.date.split(',');
         trimStrings(dates);
