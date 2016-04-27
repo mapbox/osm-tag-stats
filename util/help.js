@@ -10,7 +10,7 @@ function help() {
     console.log('  --mbtiles="<path-to-mbtiles-from-the-current-directory>"');
     console.log('  --users="<osm-username-1>","<osm-username-2>","<osm-username-3>". If you pass "mapbox", it queries mbtiles for all edits from the Mapbox Data Team.');
     console.log('  --filter="<Path to file containing tag filters>" Filters are written as specified in the Mapbox GL JS Filter Spec(https://www.mapbox.com/mapbox-gl-style-spec/#types-filter)');
-    console.log('  --dates="startDate[endDate]" Get geojson for user edits in a range of dates. If endDate is not specified, it computes all edits in startDate + 24 hours. (All dates are considered in the UTC)');
+    console.log('  --dates="startDate[,endDate]" Get geojson for user edits in a range of dates. If endDate is not specified, it computes all edits in startDate + 24 hours. (All dates are considered in the UTC)');
     console.log('  --help  Print this report\n');
     console.log('*********************************************************************************************************');
     process.exit(0);
