@@ -1,6 +1,6 @@
 ## Queries mbtiles to generate a geojson
 
-The mbtiles files mostly come from [OSM QA TILES](http://osmlab.github.io/osm-qa-tiles/) and work well with any file there! You can also use _osm-tag-stats_ with your own custom mbtiles.
+The mbtiles files usually come from [OSM QA TILES](http://osmlab.github.io/osm-qa-tiles/) and _osm-tag-stats_ works well with any file there. Of course, you can also use _osm-tag-stats_ with your own custom mbtiles files.
 
 ### Installation
 
