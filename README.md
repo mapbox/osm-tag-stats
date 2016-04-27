@@ -14,6 +14,7 @@
  OR <br />
 `osm-tag-stats --count --mbtiles=<path-to-mbtiles>[options]`
 
+**The `--mbtiles` option is required. So too is at least one of the `--geojson` or `--count` options.**
 
 #### [options]:
 ````
@@ -25,4 +26,3 @@
   --geojson="<path-to-write-geojson-to>" Writes the result geojson into a geojson file. If a file by the same name exists, it is overwritten.
   --help  Print this report.
 ````
- **The `--mbtiles` option is required. So too is at least one of the `--geojson` or `--count` options.**
