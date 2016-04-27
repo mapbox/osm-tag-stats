@@ -2,7 +2,7 @@
 var path = require('path');
 var fs = require('fs');
 
-function init(argv) {
+function cleanArguments(argv) {
     var mapboxDataTeam = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank', 'Luis36995', 'samely', 'ediyes', 'RichRico', 'andygol', 'karitotp', 'ridixcr', 'calfarome', 'dannykath', 'Rub21', 'Aaron Lidman', 'abel801', 'lxbarth'];
 
     //geojson
@@ -59,4 +59,4 @@ function init(argv) {
     return argv;
 }
 
-module.exports = init;
+module.exports = cleanArguments;
