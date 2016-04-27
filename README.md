@@ -1,6 +1,4 @@
-OSM geojson/count stats depending on users and tags.
-
-Queries mbtiles to generate a geojson
+### Queries mbtiles to generate a geojson
 
 #### Usage
 `index.js --geojson --mbtiles=<path-to-mbtiles>[options]`
