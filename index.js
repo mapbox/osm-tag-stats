@@ -70,18 +70,21 @@ function init() {
         });
     }
 
-    function checkMBTiles(mbtiles) {
+    function checkMBTiles(mbtilesPath) {
       //console.log("mbtils length ",mbtiles.indexOf(".mbtiles") == (mbtiles.length - ".mbtiles".length));
-        if (!mbtiles || !(mbtiles.lastIndexOf('.mbtiles') === (mbtiles.length - '.mbtiles'.length))) {
+        if (!mbtilesPath || !(mbtilesPath.lastIndexOf('.mbtiles') === (mbtilesPath.length - '.mbtiles'.length))) {
             return false;
         } else {
-            fs.access(mbtiles, fs.F_OK | fs.R_OK, function (err) {
+            //node 0.10.38
+            return (fs.existsSync(mbtilesPath)) ? mbtilesPath : false;
+           //node v6.0.0
+            /*fs.exists(mbtiles, fs.F_OK | fs.R_OK, function (err) {
                 if (err) {
                     console.log(err);
                     return false;
                 }
             });
-            return true;
+            return true;*/
         }
 
     }
