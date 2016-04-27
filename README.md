@@ -15,4 +15,4 @@
   --count returns total count of filtered features
   --help  Print this report
 ````
- **The `--mbtiles` option is required. So too is at least one of the --geojson or --count options.**
+ **The `--mbtiles` option is required. So too is at least one of the `--geojson` or `--count` options.**
