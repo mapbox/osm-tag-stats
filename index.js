@@ -6,7 +6,6 @@ var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
-var readline = require('readline');
 var count = false,
     geojson = false,
     users = false,
@@ -55,27 +54,9 @@ tileReduce({
     }
 });
 function init() {
-   if(argv.geojson) {
-       geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
-   }
-//overwrite existing files?
-/*
-     var overwrite = false;
-     while (!overwrite && argv.geojson && fs.existsSync(argv.geojson)) {
-        var rl = readline.createInterface(process.stdin, process.stdout);
-        geojson = argv.geojson = rl.question('File exists, overwrite? (y/n)', function (answer) {
-            if (answer === 'y') {
-                overwrite = true;
-                return argv.geojson;
-            } else {
-                var rl = readline.createInterface(process.stdin, process.stdout);
-                rl.question('Enter new file name', function (answer) {
-                    return (path.extname(answer) === '.geojson') ? answer : answer.concat('.geojson');
-                });
-            }
-        });
-    }*/
-
+    if (argv.geojson) {
+        geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
+    }
     count = Boolean(argv.count);
 
     //filter
