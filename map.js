@@ -38,13 +38,13 @@ module.exports = function (data, tile, writeData, done) {
     }
     done(null, osmID);
 
-function parseDates(dates) {
-    var startDate = new Date(dates[0]);
-    var endDate = new Date(dates[dates.length-1]);
-    if(dates.length === 1) {
-        endDate.setDate((endDate.getDate() + 1));
+    function parseDates(dates) {
+        var startDate = new Date(dates[0]);
+        var endDate = new Date(dates[dates.length - 1]);
+        if (dates.length === 1) {
+            endDate.setDate((endDate.getDate() + 1));
+        }
+        //_timestamp in QA tiles is in seconds and not milliseconds
+        return [(startDate.getTime() / 1000), (endDate.getTime() / 1000)];
     }
-    //_timestamp in QA tiles is in seconds and not milliseconds
-    return [(startDate.getTime() / 1000), (endDate.getTime() / 1000)];
-}
 };
