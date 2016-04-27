@@ -24,7 +24,7 @@ module.exports = function (data, tile, writeData, done) {
     });
 
     if (mapOptions.geojson && result.length > 0) {
-            fs.appendFileSync(mapOptions.geojson, JSON.stringify(result) + '\n');
+        fs.appendFileSync(mapOptions.geojson, JSON.stringify(result) + '\n');
     }
     done(null, osmID);
 
