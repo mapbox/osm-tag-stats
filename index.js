@@ -5,6 +5,7 @@ var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
+var readline = require('readline');
 var count = false,
     geojson = false,
     users = false,
@@ -57,7 +58,6 @@ function init() {
     var overwrite = false;
     argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson'); 
     while (!overwrite && argv.geojson && fs.existsSync(argv.geojson)) {
-        var readline = require('readline');
         var rl = readline.createInterface(process.stdin, process.stdout);
         geojson = argv.geojson = rl.question('File exists, overwrite? (y/n)', function (answer) {
             if (answer === 'y') {
