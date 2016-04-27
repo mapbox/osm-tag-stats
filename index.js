@@ -1,15 +1,14 @@
 'use strict';
 
+var fs = require('fs');
 var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
-var count = Boolean(argv.count);
-var geojson = Boolean(argv.geojson);
-var users = (argv.users) ? argv.users.split(',') : ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank'];
-var dates = (argv.date) ? argv.date.split(',') : false;
+var count, geojson, users, dates, mbtiles;
 var OSMID = [];
 
+init();
 
 if ((!geojson && !count) || !mbtiles || argv.help) {
     console.log('Queries OSM QA tiles to generate a geojson after applying the following filters.');
@@ -36,9 +35,54 @@ tileReduce({
     }
 })
 .on('reduce', function (id) {
-    OSMID = OSMID.concat(id);
+    if (argv.count) {
+        OSMID = OSMID.concat(id);
+    }
 })
 .on('end', function () {
-    var uniqueIDs = _.uniq(OSMID);
-    console.log('Features total: %d', uniqueIDs.length);
+    if (argv.count) {
+        var uniqueIDs = _.uniq(OSMID);
+        console.log('Features total: %d', uniqueIDs.length);
+    }
 });
+function init() {
+    count = Boolean(argv.count);
+    geojson = Boolean(argv.geojson);
+    dates = false;
+
+    if (argv.dates) {
+        dates = argv.date.split(',');
+        trimStrings(dates);
+    }
+
+    if (argv.users.toLowerCase() === 'mapbox') {
+        users = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank'];
+    } else if (argv.users) {
+        users = argv.users.split(',');
+        trimStrings(users);
+    }
+
+    mbtiles = checkMBTiles(argv.mbtiles);
+
+    function trimStrings(strings) {
+        strings.forEach(function (string) {
+            string.trim();
+        });
+    }
+
+    function checkMBTiles(mbtiles) {
+      //console.log("mbtils length ",mbtiles.indexOf(".mbtiles") == (mbtiles.length - ".mbtiles".length));
+        if (!mbtiles || !(mbtiles.lastIndexOf('.mbtiles') === (mbtiles.length - '.mbtiles'.length))) {
+            return false;
+        } else {
+            fs.access(mbtiles, fs.F_OK | fs.R_OK, function (err) {
+                if (err) {
+                    console.log(err);
+                    return false;
+                }
+            });
+            return true;
+        }
+
+    }
+}
