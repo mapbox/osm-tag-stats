@@ -61,14 +61,16 @@ function init() {
         dates = argv.date.split(',');
         trimStrings(dates);
     }
-
+    //users
     if (argv.users && argv.users.toLowerCase() === 'mapbox') {
         users = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank'];
     } else if (argv.users) {
         users = argv.users.split(',');
         trimStrings(users);
+    } else {
+        users = false;
     }
-
+    //path
     mbtilesPath = checkMBTiles(argv.mbtiles);
 
     function trimStrings(strings) {
@@ -93,6 +95,5 @@ function init() {
             });
             return true;*/
         }
-
     }
 }
