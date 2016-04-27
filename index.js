@@ -41,5 +41,8 @@ tileReduce({
         var uniqueIDs = _.uniq(OSMID);
         console.log('Features total: %d', uniqueIDs.length);
     }
+    if (geojson) {
+        console.log('The filtered geojson has been written to %s', geojson);
+    }
 });
 
