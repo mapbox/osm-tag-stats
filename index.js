@@ -54,10 +54,13 @@ tileReduce({
     }
 });
 function init() {
-    //geojson overwrite?
-    var overwrite = false;
-    argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
-    while (!overwrite && argv.geojson && fs.existsSync(argv.geojson)) {
+   if(argv.geojson) {
+       argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
+   }
+//overwrite existing files?
+/*
+     var overwrite = false;
+     while (!overwrite && argv.geojson && fs.existsSync(argv.geojson)) {
         var rl = readline.createInterface(process.stdin, process.stdout);
         geojson = argv.geojson = rl.question('File exists, overwrite? (y/n)', function (answer) {
             if (answer === 'y') {
@@ -70,7 +73,7 @@ function init() {
                 });
             }
         });
-    }
+    }*/
 
     count = Boolean(argv.count);
     //filter
