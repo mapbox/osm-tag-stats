@@ -23,7 +23,7 @@ module.exports = function (data, tile, writeData, done) {
         }
     });
 
-    if (result.length > 0 && mapOptions.geojson) {
+    if (mapOptions.geojson && result.length > 0) {
         if (!mapOptions.count) {
             writeData(JSON.stringify(result) + '\n');
         } else {
