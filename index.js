@@ -53,9 +53,13 @@ tileReduce({
         console.log('Features total: %d', uniqueIDs.length);
     }
 });
+
 function init() {
     if (argv.geojson) {
         geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
+        if (fs.existsSync(geojson)) {
+            fs.unlinkSync(geojson);
+        }
     }
     count = Boolean(argv.count);
 
