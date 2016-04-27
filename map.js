@@ -6,9 +6,7 @@ module.exports = function (data, tile, writeData, done) {
     var dates = Boolean(mapOptions.dates) ? parseDates(mapOptions.dates) : false;
     var users = mapOptions.users;
     var result = layer.features.filter(function (val) {
-        if (mapOptions.dates) {
-            var dateCondition = (val.properties['_timestamp'] && val.properties['_timestamp'] >= dates[0] && val.properties['_timestamp'] <= dates[1]);
-        }
+        var dateCondition = (mapOptions.dates) ? (val.properties['_timestamp'] && val.properties['_timestamp'] >= dates[0] && val.properties['_timestamp'] <= dates[1]) : true;
         if ((!users || (users && users.indexOf(val.properties['_user']) > -1)) && dateCondition) {
             if (mapOptions.count) {
                 osmID.push(val.properties['_osm_way_id'] ? val.properties['_osm_way_id'] : val.properties['_osm_node_id']);
