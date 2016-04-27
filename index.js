@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 'use strict';
 
-var fs = require('fs');
 var init = require('./init.js');
 var help = require('./help.js');
 var tileReduce = require('tile-reduce');
@@ -15,7 +14,6 @@ var count = cleanArguments.count,
     dates = cleanArguments.dates,
     mbtilesPath = cleanArguments.mbtilesPath,
     tagFilter = cleanArguments.filter;
-var mapboxDataTeam = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank', 'Luis36995', 'samely', 'ediyes', 'RichRico', 'andygol', 'karitotp', 'ridixcr', 'calfarome', 'dannykath', 'Rub21', 'Aaron Lidman', 'abel801', 'lxbarth'];
 var OSMID = [];
 
 if ((!geojson && !count) || !mbtilesPath || argv.help) {

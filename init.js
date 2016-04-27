@@ -1,7 +1,10 @@
+'use strict';
 var path = require('path');
 var fs = require('fs');
 
 function init(argv) {
+    var mapboxDataTeam = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank', 'Luis36995', 'samely', 'ediyes', 'RichRico', 'andygol', 'karitotp', 'ridixcr', 'calfarome', 'dannykath', 'Rub21', 'Aaron Lidman', 'abel801', 'lxbarth'];
+
     if (argv.geojson) {
         argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
         if (fs.existsSync(argv.geojson)) {
@@ -52,4 +55,4 @@ function init(argv) {
     return argv;
 }
 
-module.exports=init;
+module.exports = init;

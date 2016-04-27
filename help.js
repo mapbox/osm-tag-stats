@@ -1,3 +1,4 @@
+'use strict';
 function help() {
     console.log('*********************************************************************************************************\n');
     console.log('Queries OSM QA tiles to generate a geojson after applying the following filters.\n');
@@ -14,4 +15,4 @@ function help() {
     console.log('*********************************************************************************************************');
     process.exit(0);
 }
-module.exports=help;
+module.exports = help;
