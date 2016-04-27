@@ -27,13 +27,7 @@ module.exports = function (data, tile, writeData, done) {
         if (!mapOptions.count) {
             writeData(JSON.stringify(result) + '\n');
         } else {
-            fs.appendFileSync('features.geojson', JSON.stringify(result) + '\n', function (err) {
-                if (err) {
-                    throw err;
-                    process.exit(0);
-                }
-
-            });
+            fs.appendFileSync('features.geojson', JSON.stringify(result) + '\n');
         }
     }
     done(null, osmID);
