@@ -5,12 +5,17 @@ var fs = require('fs');
 function init(argv) {
     var mapboxDataTeam = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank', 'Luis36995', 'samely', 'ediyes', 'RichRico', 'andygol', 'karitotp', 'ridixcr', 'calfarome', 'dannykath', 'Rub21', 'Aaron Lidman', 'abel801', 'lxbarth'];
 
+    //geojson
     if (argv.geojson) {
         argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
         if (fs.existsSync(argv.geojson)) {
             fs.unlinkSync(argv.geojson);
         }
+    } else {
+        argv.geojson = false;
     }
+
+    //count
     argv.count = Boolean(argv.count);
 
     //filter
@@ -24,6 +29,8 @@ function init(argv) {
     if (argv.dates) {
         argv.dates = argv.dates.split(',');
         trimStrings(argv.dates);
+    } else {
+        argv.dates = false;
     }
 
     //users
@@ -37,7 +44,11 @@ function init(argv) {
     }
 
     //path
-    argv.mbtiles = checkMBTiles(argv.mbtiles);
+    if (!argv.mbtiles || (path.extname(argv.mbtiles) !== '.mbtiles')) {
+        argv.mbtiles = false;
+    } else if (!fs.existsSync(argv.mbtiles)) {
+        argv.mbtiles = false;
+    }
 
     function trimStrings(strings) {
         strings.forEach(function (string) {
@@ -45,13 +56,6 @@ function init(argv) {
         });
     }
 
-    function checkMBTiles(mbtilesPath) {
-        if (!mbtilesPath || (path.extname(mbtilesPath) !== '.mbtiles')) {
-            return false;
-        } else {
-            return (fs.existsSync(mbtilesPath)) ? mbtilesPath : false;
-        }
-    }
     return argv;
 }
 
