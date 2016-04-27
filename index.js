@@ -12,10 +12,9 @@ var count = cleanArguments.count,
     geojson = cleanArguments.geojson,
     users = cleanArguments.users,
     dates = cleanArguments.dates,
-    mbtilesPath = cleanArguments.mbtilesPath,
+    mbtilesPath = cleanArguments.mbtiles,
     tagFilter = cleanArguments.filter;
 var OSMID = [];
-
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
     help();
 }
