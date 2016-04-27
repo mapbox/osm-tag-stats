@@ -14,7 +14,7 @@ Queries mbtiles to generate a geojson
   --filter="<Path to file containing tag filters>" Filters are written as specified in the Mapbox GL JS Filter Spec(https://www.mapbox.com/mapbox-gl-style-spec/#types-filter)
   --mbtiles="<path-to-mbtiles-from-the-current-directory>"
   --dates="startDate[endDate]" Get geojson for user edits in a range of dates. If endDate is not specified, it computes all edits in startDate + 24 hours. (All dates are UTC)
-  --count returns total count of features added by a user
+  --count returns total count of filtered features
   --help  Print this report
 ````
  At least one of the --geojson or --count options must be present
