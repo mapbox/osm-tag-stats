@@ -15,6 +15,7 @@ if ((!geojson && !count) || !mbtilesPath || argv.help) {
     console.log('index.js --geojson --mbtiles=<path-to-mbtiles>[options] OR index.js --count --mbtiles=<path-to-mbtiles>[options]');
     console.log('[options]:');
     console.log('  --users="<osm-username-1>","<osm-username-2>","<osm-username-3>" Defaults to the Mapbox team if nothing is specified');
+    console.log('  --filter="<Path to file containing tag filters>" Filters are written as specified in the Mapbox GL JS Filter Spec(https://www.mapbox.com/mapbox-gl-style-spec/#types-filter)');
     console.log('  --mbtiles="<path-to-mbtiles-from-the-current-directory>"');
     console.log('  --dates="startDate[date2, date3, endDate]" Get geojson for user edits in a range of dates');
     console.log('  --count returns total count of features added by a user');
@@ -80,7 +81,6 @@ function init() {
     }
 
     function checkMBTiles(mbtilesPath) {
-      //console.log("mbtils length ",mbtiles.indexOf(".mbtiles") == (mbtiles.length - ".mbtiles".length));
         if (!mbtilesPath || !(mbtilesPath.lastIndexOf('.mbtiles') === (mbtilesPath.length - '.mbtiles'.length))) {
             return false;
         } else {
