@@ -1,6 +1,11 @@
 'use strict';
+
 var fs = require('fs');
+var ff = require('feature-filter');
+
 module.exports = function (data, tile, writeData, done) {
+
+    var filter = (mapOptions.tagFilter) ? ff(mapOptions.tagFilter) : false;
     var layer = data.osm.osm;
     var osmID = (mapOptions.count) ? [] : null;
     var dates = Boolean(mapOptions.dates) ? parseDates(mapOptions.dates) : false;
