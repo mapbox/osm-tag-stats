@@ -103,7 +103,7 @@ function init() {
     }
 
     function checkMBTiles(mbtilesPath) {
-        if (!mbtilesPath || !(mbtilesPath.lastIndexOf('.mbtiles') === (mbtilesPath.length - '.mbtiles'.length))) {
+        if (!mbtilesPath || (path.extname(mbtilesPath) !== '.mbtiles')) {
             return false;
         } else {
             return (fs.existsSync(mbtilesPath)) ? mbtilesPath : false;
