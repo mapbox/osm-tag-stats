@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "fs": "0.0.2",
     "minimist": "^1.2.0",
     "path": "^0.12.7",
     "tile-reduce": "^3.1.1",
