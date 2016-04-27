@@ -53,9 +53,26 @@ tileReduce({
     }
 });
 function init() {
+    //geojson overwrite?
+    var overwrite = false;
+    argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson'); 
+    while (!overwrite && argv.geojson && fs.existsSync(argv.geojson)) {
+        var readline = require('readline');
+        var rl = readline.createInterface(process.stdin, process.stdout);
+        geojson = argv.geojson = rl.question('File exists, overwrite? (y/n)', function (answer) {
+            if (answer === 'y') {
+                overwrite = true;
+                return argv.geojson;
+            } else {
+                var rl = readline.createInterface(process.stdin, process.stdout);
+                rl.question('Enter new file name', function (answer) {
+                    return (path.extname(answer) === '.geojson') ? answer : answer.concat(".geojson");
+                });
+            }
+        });
+    }
+
     count = Boolean(argv.count);
-    geojson = Boolean(argv.geojson);
-    dates = false;
     //filter
     if (argv.filter && fs.existsSync(argv.filter)) {
         tagFilter = JSON.parse(fs.readFileSync(argv.filter));
