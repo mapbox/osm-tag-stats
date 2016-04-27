@@ -1,52 +1,44 @@
-## Queries mbtiles to generate a geojson
+## osm-tag-stats - filter OSM features, find stats and export GeoJSON using OSM QA Tiles
 
-The mbtiles files usually come from [OSM QA TILES](http://osmlab.github.io/osm-qa-tiles/) and _osm-tag-stats_ works well with any file there. Of course, you can also use _osm-tag-stats_ with your own custom mbtiles files.
+osm-tag-stats uses [OSM QA Tiles](http://osmlab.github.io/osm-qa-tiles/) and [TileReduce](https://github.com/mapbox/tile-reduce) to filter OSM features and export them to GeoJSON. You can download [planet tiles](https://s3.amazonaws.com/mapbox/osm-qa-tiles/latest.planet.mbtiles.gz) or use [country extracts](http://osmlab.github.io/osm-qa-tiles/country.html). 
+
+_If you are using your own vector tiles, osm-tag-stats currently assumes `osm` as the tile layer._
 
 ### Installation
 
 * `git clone git@github.com:mapbox/osm-tag-stats.git`
 * `cd osm-tag-stats`
-* `npm install`
 * `npm link`
 
-----------------------------------------------------------
-
 ### Usage
-`osm-tag-stats --geojson=<output-geojson-file> --mbtiles=<path-to-mbtiles>[options]` <br />
- OR <br />
-`osm-tag-stats --count --mbtiles=<path-to-mbtiles>[options]`
+1. To write GeoJSON to a file: `osm-tag-stats --mbtiles=<path-to-mbtiles> [options] --geojson=<output-geojson-file>` <br />
+2. To print the count of features to stdout: `osm-tag-stats --mbtiles=<path-to-mbtiles> [options] --count`
 
-**The `--mbtiles` option is required. So too is at least one of the `--geojson` or `--
-count` options.**
+_Path to `--mbtiles` and either of `--geojson` or `--count` is required._
 
-#### [options]:
-````
-  --mbtiles="<path-to-mbtiles-file-from-the-current-directory>"
-  --users="<osm-username-1>","<osm-username-2>","<osm-username-3>". If you pass "mapbox", it queries the mbtiles file for all edits from the Mapbox Data Team. The usernames you pass should be exactly as they're on OSM, that is, they're case sensitive.
-  --filter="<Path to file containing tag filters>" Filters are written as specified in the Mapbox GL JS Filter Specification(https://www.mapbox.com/mapbox-gl-style-spec/#types-filter).
-  --dates="startDate[endDate]" Get geojson for user edits in a range of dates. If endDate is not specified, it computes all edits in startDate + 24 hours. (All dates are UTC)
-  --count returns total count of filtered features to stdout.
-  --geojson="<path-to-output-geojson-file>" Writes the resulting geojson into a geojson file. If a file by the same name exists, it is overwritten.
-  --help  Print this report.
-````
-----------------------------------------------------------
+#### Options
+
+| Option | Description
+---------|-------
+--mbtiles| path to mbtiles file
+--users | comma separated list of OSM usernames. You can pass `mapbox` for usernames of @mapbox/team-data.
+--filter | path to file containing tag filters. Filters are based on [Mapbox GL Style Filters]( Filters are written as specified in the Mapbox GL JS Filter Specification(https://www.mapbox.com/mapbox-gl-style-spec/#types-filter).
+--dates | comma separated UTC format start and end dates. If end date is not supplied, filters start date + 24 hours. 
+--count | prints count of filtered features to stdout.
+--geojson | path to write geojson, overwrites existing file.
+--help | print usage instructions.
 
 ### Examples
 
 * `$osm-tag-stats --geojson=highway_primary.geojson --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
+
 ```
-Starting up 32 workers... Job started.
-Processing tile coords from "osm" source.
-2487487 tiles processed in 8m 24s.
 The filtered geojson has been written to highway_primary.geojson
 ```
 
 * `osm-tag-stats --geojson=highway_primary.geojson --count --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
-```
-Starting up 32 workers... Job started.
-Processing tile coords from "osm" source.
-2487487 tiles processed in 9m 58s.
 
+```
 Features total: 89186
 The filtered geojson has been written to highway_primary.geojson
 ```
@@ -54,7 +46,7 @@ The filtered geojson has been written to highway_primary.geojson
 
 ### Filters
 
-You can specify filters of varying levels of complexity using the [Mapbox GL JS Filter Specification](https://www.mapbox.com/mapbox-gl-style-spec/#types-filter)
+You can specify filters of varying levels of complexity using the [Mapbox GL Style Filter Specification](https://www.mapbox.com/mapbox-gl-style-spec/#types-filter)
 
 * A simple filter for `building=yes` could look like
 `["==", "building", "yes"]`
@@ -83,5 +75,3 @@ You can specify filters of varying levels of complexity using the [Mapbox GL JS 
 ```
 
 Create a file with your filter specification and pass the path of this file to the `--filter` argument. There are some presets in the `filter` folder that you can use.
-
-----------------------------------------------------------
