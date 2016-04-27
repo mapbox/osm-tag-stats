@@ -5,7 +5,12 @@ var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
-var count, geojson, users, dates, mbtilesPath, tagFilter;
+var count = false,
+    geojson = false,
+    users = false,
+    dates = false,
+    mbtilesPath = false,
+    tagFilter = false;
 var OSMID = [];
 
 init();
