@@ -20,8 +20,7 @@ The mbtiles files usually come from [OSM QA TILES](http://osmlab.github.io/osm-q
 
 #### Examples
 
-*
-`$osm-tag-stats --geojson=highway_primary.geojson --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
+* `$osm-tag-stats --geojson=highway_primary.geojson --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
 ```
 Starting up 32 workers... Job started.
 Processing tile coords from "osm" source.
@@ -29,8 +28,7 @@ Processing tile coords from "osm" source.
 The filtered geojson has been written to highway_primary.geojson
 ```
 
-*
-`osm-tag-stats --geojson=highway_primary.geojson --count --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
+* `osm-tag-stats --geojson=highway_primary.geojson --count --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
 ```
 Starting up 32 workers... Job started.
 Processing tile coords from "osm" source.
