@@ -1,16 +1,17 @@
 ### Queries mbtiles to generate a geojson
 
 #### Installation
-git clone git@github.com:mapbox/osm-tag-stats.git
-cd osm-tag-stats
-npm install
-npm link
+
+* `git clone git@github.com:mapbox/osm-tag-stats.git`
+* `cd osm-tag-stats`
+* `npm install`
+* `npm link`
 
 
 
 #### Usage
-`osm-tag-stats --geojson --mbtiles=<path-to-mbtiles>[options]`
- OR 
+`osm-tag-stats --geojson --mbtiles=<path-to-mbtiles>[options]` <br />
+ OR <br />
 `osm-tag-stats --count --mbtiles=<path-to-mbtiles>[options]`
 
 
