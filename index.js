@@ -5,12 +5,12 @@ var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
-var count, geojson, users, dates, mbtiles;
+var count, geojson, users, dates, mbtilesPath;
 var OSMID = [];
 
 init();
 
-if ((!geojson && !count) || !mbtiles || argv.help) {
+if ((!geojson && !count) || !mbtilesPath || argv.help) {
     console.log('Queries OSM QA tiles to generate a geojson after applying the following filters.');
     console.log('index.js --geojson --mbtiles=<path-to-mbtiles>[options] OR index.js --count --mbtiles=<path-to-mbtiles>[options]');
     console.log('[options]:');
@@ -26,7 +26,7 @@ if ((!geojson && !count) || !mbtiles || argv.help) {
 tileReduce({
     zoom: 12,
     map: path.join(__dirname, 'map.js'),
-    sources: [{name: 'osm', mbtiles: path.join(__dirname, '../latest.planet.mbtiles')}],
+    sources: [{name: 'osm', mbtiles: path.join(__dirname, mbtilesPath)}],
     mapOptions: {
         'count': count,
         'geojson': geojson,
@@ -62,7 +62,7 @@ function init() {
         trimStrings(users);
     }
 
-    mbtiles = checkMBTiles(argv.mbtiles);
+    mbtilesPath = checkMBTiles(argv.mbtiles);
 
     function trimStrings(strings) {
         strings.forEach(function (string) {
