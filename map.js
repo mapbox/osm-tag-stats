@@ -24,10 +24,7 @@ module.exports = function (data, tile, writeData, done) {
     });
 
     if (mapOptions.geojson && result.length > 0) {
-        if (!mapOptions.count) {
-            writeData(JSON.stringify(result) + '\n');
-        } else {
-            fs.appendFileSync('features.geojson', JSON.stringify(result) + '\n');
+            fs.appendFileSync(mapOptions.geojson, JSON.stringify(result) + '\n');
         }
     }
     done(null, osmID);
