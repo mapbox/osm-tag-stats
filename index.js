@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 
-var init = require('./init.js');
-var help = require('./help.js');
+var help = require('./util/help.js');
 var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
