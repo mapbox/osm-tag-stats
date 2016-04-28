@@ -7,7 +7,7 @@ function cleanArguments(argv) {
 
     //geojson
     if (argv.geojson) {
-        argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : argv.geojson.concat('.geojson');
+        argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : String(argv.geojson).concat('.geojson');
         if (fs.existsSync(argv.geojson)) {
             fs.unlinkSync(argv.geojson);
         }
