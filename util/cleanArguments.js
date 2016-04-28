@@ -51,10 +51,11 @@ function cleanArguments(argv) {
     }
 
     function trimStrings(strings) {
+        //Deep copy
         var stringCopy = strings.slice(0);
-        stringCopy.forEach(function (s) {
-            s.trim();
-        });
+        for (var i = 0; i < stringCopy.length; i++) {
+            stringCopy[i] = stringCopy[i].trim();
+        }
         return stringCopy;
     }
 
