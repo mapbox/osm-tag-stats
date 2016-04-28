@@ -1,12 +1,11 @@
 {
-  "name": "blr-data",
+  "name": "osm-tag-stats",
   "version": "1.0.0",
-  "description": "",
+  "description": "Filter OSM features, find stats and export GeoJSON using OSM QA Tiles",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "feature-filter": "^2.0.1",
