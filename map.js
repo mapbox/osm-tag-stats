@@ -27,14 +27,14 @@ module.exports = function (data, tile, writeData, done) {
         fs.appendFileSync(mapOptions.geojson, JSON.stringify(result) + '\n');
     }
     done(null, osmID);
-
-    function parseDates(dates) {
-        var startDate = new Date(dates[0]);
-        var endDate = new Date(dates[dates.length - 1]);
-        if (dates.length === 1) {
-            endDate.setDate((endDate.getDate() + 1));
-        }
-        //_timestamp in QA tiles is in seconds and not milliseconds
-        return [(startDate.getTime() / 1000), (endDate.getTime() / 1000)];
-    }
 };
+
+function parseDates(dates) {
+    var startDate = new Date(dates[0]);
+    var endDate = new Date(dates[dates.length - 1]);
+    if (dates.length === 1) {
+        endDate.setDate((endDate.getDate() + 1));
+    }
+    //_timestamp in QA tiles is in seconds and not milliseconds
+    return [(startDate.getTime() / 1000), (endDate.getTime() / 1000)];
+}

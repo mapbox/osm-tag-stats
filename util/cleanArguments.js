@@ -49,17 +49,14 @@ function cleanArguments(argv) {
     } else if (!fs.existsSync(argv.mbtiles)) {
         argv.mbtiles = false;
     }
-
-    function trimStrings(strings) {
-        //Deep copy
-        var stringCopy = strings.slice(0);
-        for (var i = 0; i < stringCopy.length; i++) {
-            stringCopy[i] = stringCopy[i].trim();
-        }
-        return stringCopy;
-    }
-
     return argv;
+}
+
+function trimStrings(strings) {
+    for (var i = 0; i < strings.length; i++) {
+        strings[i] = strings[i].trim();
+    }
+    return strings;
 }
 
 module.exports = cleanArguments;
