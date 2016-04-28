@@ -28,7 +28,7 @@ function cleanArguments(argv) {
     //dates
     if (argv.dates) {
         argv.dates = argv.dates.split(',');
-        trimStrings(argv.dates);
+        argv.dates = trimStrings(argv.dates);
     } else {
         argv.dates = false;
     }
@@ -38,7 +38,7 @@ function cleanArguments(argv) {
         argv.users = mapboxDataTeam;
     } else if (argv.users) {
         argv.users = argv.users.split(',');
-        trimStrings(argv.users);
+        argv.users = trimStrings(argv.users);
     } else {
         argv.users = false;
     }
@@ -51,9 +51,11 @@ function cleanArguments(argv) {
     }
 
     function trimStrings(strings) {
-        strings.forEach(function (string) {
-            string.trim();
+        var stringCopy = strings.slice(0);
+        stringCopy.forEach(function (s) {
+            s.trim();
         });
+        return stringCopy;
     }
 
     return argv;
