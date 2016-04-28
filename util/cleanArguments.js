@@ -53,10 +53,9 @@ function cleanArguments(argv) {
 }
 
 function trimStrings(strings) {
-    for (var i = 0; i < strings.length; i++) {
-        strings[i] = strings[i].trim();
-    }
-    return strings;
+    return strings.map(function(s) {
+        return s.trim();
+    });
 }
 
 module.exports = cleanArguments;
