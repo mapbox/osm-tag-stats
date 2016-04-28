@@ -14,6 +14,7 @@ var count = cleanArguments.count,
     mbtilesPath = cleanArguments.mbtiles,
     tagFilter = cleanArguments.filter;
 var OSMID = [];
+
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
     help();
 }
@@ -44,4 +45,3 @@ tileReduce({
         console.log('The filtered geojson has been written to %s', geojson);
     }
 });
-
