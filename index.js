@@ -22,7 +22,7 @@ if ((!geojson && !count) || !mbtilesPath || argv.help) {
 tileReduce({
     zoom: 12,
     map: path.join(__dirname, 'map.js'),
-    sources: [{name: 'osm', mbtiles: path.join(__dirname, mbtilesPath)}],
+    sources: [{name: 'osm', mbtiles: mbtilesPath}],
     mapOptions: {
         'count': count,
         'geojson': geojson,
