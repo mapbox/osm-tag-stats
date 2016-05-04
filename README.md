@@ -74,4 +74,9 @@ You can specify filters of varying levels of complexity using the [Mapbox GL Sty
 ]
 ```
 
+* A filter for all highways - `highway=*` can look like
+```
+["has", "highway"]
+```
+
 Create a file with your filter specification and pass the path of this file to the `--filter` argument. There are some presets in the `filter` folder that you can use.
