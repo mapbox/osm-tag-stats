@@ -8,7 +8,7 @@
   },
   "license": "ISC",
   "dependencies": {
-    "feature-filter": "^2.0.1",
+    "feature-filter": "https://github.com/mapbox/feature-filter/tarball/6b9adae4b834a9abe2641674e0e05c3bfab36780",
     "fs": "0.0.2",
     "minimist": "^1.2.0",
     "path": "^0.12.7",
