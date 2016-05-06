@@ -44,11 +44,13 @@ function cleanArguments(argv) {
     }
 
     //path
-    argv.mbtiles = path.normalize(argv.mbtiles);
     if (!argv.mbtiles || (path.extname(argv.mbtiles) !== '.mbtiles')) {
         argv.mbtiles = false;
-    } else if (!fs.existsSync(argv.mbtiles)) {
-        argv.mbtiles = false;
+    } else {
+        argv.mbtiles = path.normalize(argv.mbtiles);
+        if (!fs.existsSync(argv.mbtiles)) {
+            argv.mbtiles = false;
+        }
     }
     return argv;
 }
