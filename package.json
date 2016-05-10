@@ -11,7 +11,7 @@
   "dependencies": {
     "feature-filter": "2.1.0",
     "fs": "0.0.2",
-    "geojson-stream-merge": "https://github.com/geohacker/geojson-stream-merge/tarball/fd9f64f8265916e8f80edb0254d3e3192a2ec484",
+    "geojson-stream-merge": "^1.0.0",
     "minimist": "^1.2.0",
     "path": "^0.12.7",
     "tile-reduce": "^3.1.1",
