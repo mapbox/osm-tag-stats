@@ -24,7 +24,7 @@ module.exports = function (data, tile, writeData, done) {
         }
     });
 
-    if (mapOptions.geojson && result.length > 0) {
+    if (mapOptions.tmpGeojson && result.length > 0) {
         var fc = featureCollection(result);
         fs.appendFileSync(mapOptions.tmpGeojson, JSON.stringify(fc) + '\n');
     }
