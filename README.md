@@ -57,7 +57,7 @@ You can specify filters of varying levels of complexity using the [Mapbox GL Sty
 	"all",
 	["==", "building", "yes"],
 	["==", "parking", "amenity"],
-	[">", "building:levels", 1],
+	[">", "building:levels", 1]
 ]
 ```
 

@@ -1,0 +1,6 @@
+[
+    "any",
+    ["has", "turn:lanes"],
+    ["has", "turn:lanes:forward"],
+    ["has", "turn:lanes:backward"]
+]
