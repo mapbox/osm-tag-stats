@@ -7,14 +7,17 @@ var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
 var cleanArguments = require('./util/cleanArguments')(argv);
+var gsm = require('geojson-stream-merge');
+var fs = require('fs');
 var count = cleanArguments.count,
     geojson = cleanArguments.geojson,
     users = cleanArguments.users,
     dates = cleanArguments.dates,
     mbtilesPath = cleanArguments.mbtiles,
+    tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.filter;
 var OSMID = [];
-
+console.log(tmpGeojson)
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
     help();
 }
@@ -25,7 +28,7 @@ tileReduce({
     sources: [{name: 'osm', mbtiles: mbtilesPath}],
     mapOptions: {
         'count': count,
-        'geojson': geojson,
+        'tmpGeojson': tmpGeojson,
         'dates': dates,
         'users': users,
         'tagFilter': tagFilter
@@ -42,6 +45,6 @@ tileReduce({
         console.log('Features total: %d', uniqueIDs.length);
     }
     if (geojson) {
-        console.log('The filtered geojson has been written to %s', geojson);
+//        gsm(tmpGeojson, geojson);
     }
 });
