@@ -6,17 +6,19 @@ var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var _ = require('underscore');
-var cleanArguments = require('./util/cleanArguments')(argv);
 var gsm = require('geojson-stream-merge');
 var fs = require('fs');
 
-var count = cleanArguments.count,
-    geojson = cleanArguments.geojson,
-    users = cleanArguments.users,
-    dates = cleanArguments.dates,
-    mbtilesPath = cleanArguments.mbtiles,
+var tmpDir = 'tmp-osm-tag-stats/', tmpGeojson;
+var cleanArguments = require('./util/cleanArguments')(argv, tmpDir, tmpGeojson);
+
+var count = cleanArguments.argv.count,
+    geojson = cleanArguments.argv.geojson,
+    users = cleanArguments.argv.users,
+    dates = cleanArguments.argv.dates,
+    mbtilesPath = cleanArguments.argv.mbtiles,
     tmpGeojson = cleanArguments.tmpGeojson,
-    tagFilter = cleanArguments.filter;
+    tagFilter = cleanArguments.argv.filter;
 var OSMID = [];
 
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
@@ -46,6 +48,8 @@ tileReduce({
         console.log('Features total: %d', uniqueIDs.length);
     }
     if (geojson) {
-//        gsm(tmpGeojson, geojson);
+        gsm(tmpGeojson, geojson);
+        fs.unlinkSync(tmpGeojson);
+        fs.rmdirSync(tmpDir);
     }
 });
