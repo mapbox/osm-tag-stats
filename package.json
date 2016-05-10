@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "ISC",
+  "homepage": "https://github.com/mapbox/osm-tag-stats.git",
   "dependencies": {
     "feature-filter": "2.1.0",
     "fs": "0.0.2",
