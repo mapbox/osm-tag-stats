@@ -9,8 +9,8 @@ var _ = require('underscore');
 var gsm = require('geojson-stream-merge');
 var fs = require('fs');
 
-var tmpDir = 'tmp-osm-tag-stats/', tmpGeojson;
-var cleanArguments = require('./util/cleanArguments')(argv, tmpDir, tmpGeojson);
+var tmpDir = 'tmp-osm-tag-stats/';
+var cleanArguments = require('./util/cleanArguments')(argv, tmpDir);
 
 var count = cleanArguments.argv.count,
     geojson = cleanArguments.argv.geojson,
