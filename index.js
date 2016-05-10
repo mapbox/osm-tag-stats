@@ -9,6 +9,7 @@ var _ = require('underscore');
 var cleanArguments = require('./util/cleanArguments')(argv);
 var gsm = require('geojson-stream-merge');
 var fs = require('fs');
+
 var count = cleanArguments.count,
     geojson = cleanArguments.geojson,
     users = cleanArguments.users,
@@ -17,7 +18,7 @@ var count = cleanArguments.count,
     tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.filter;
 var OSMID = [];
-console.log(tmpGeojson)
+
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
     help();
 }

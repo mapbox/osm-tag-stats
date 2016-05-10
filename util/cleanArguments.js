@@ -8,7 +8,7 @@ function cleanArguments(argv) {
     //geojson
     if (argv.geojson) {
         var tmpFilesDir = 'tmp-osm-tag-stats/';
-        if(!fs.existsSync(tmpFilesDir)) {
+        if (!fs.existsSync(tmpFilesDir)) {
             fs.mkdirSync(tmpFilesDir);
         }
 
@@ -16,11 +16,9 @@ function cleanArguments(argv) {
         argv.tmpGeojson = tmpFilesDir + argv.geojson;
 
         if (fs.existsSync(argv.geojson)) {
-            console.log("deleting argv.geojson");
             fs.unlinkSync(argv.geojson);
         }
         if (fs.existsSync(argv.tmpGeojson)) {
-            console.log("deleting argv.tmpGeojson");
             fs.unlinkSync(argv.tmpGeojson);
         }
 
