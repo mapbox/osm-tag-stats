@@ -8,12 +8,13 @@
   },
   "license": "ISC",
   "dependencies": {
-    "feature-filter": "https://github.com/mapbox/feature-filter/tarball/6b9adae4b834a9abe2641674e0e05c3bfab36780",
+    "feature-filter": "2.1.0",
     "fs": "0.0.2",
+    "geojson-stream-merge": "https://github.com/geohacker/geojson-stream-merge/tarball/fd9f64f8265916e8f80edb0254d3e3192a2ec484",
     "minimist": "^1.2.0",
     "path": "^0.12.7",
     "tile-reduce": "^3.1.1",
-    "turf": "^2.0.2",
+    "turf-featurecollection": "^1.0.1",
     "underscore": "^1.8.3"
   },
   "bin": {

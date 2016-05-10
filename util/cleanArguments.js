@@ -2,15 +2,25 @@
 var path = require('path');
 var fs = require('fs');
 
-function cleanArguments(argv) {
+function cleanArguments(argv, tmpFilesDir, tmpGeojson) {
     var mapboxDataTeam = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank', 'Luis36995', 'samely', 'ediyes', 'RichRico', 'andygol', 'karitotp', 'ridixcr', 'calfarome', 'dannykath', 'Rub21', 'Aaron Lidman', 'abel801', 'lxbarth'];
 
     //geojson
     if (argv.geojson) {
+        if (!fs.existsSync(tmpFilesDir)) {
+            fs.mkdirSync(tmpFilesDir);
+        }
+
         argv.geojson = (path.extname(argv.geojson) === '.geojson') ? argv.geojson : String(argv.geojson).concat('.geojson');
+        tmpGeojson = tmpFilesDir + argv.geojson;
+
         if (fs.existsSync(argv.geojson)) {
             fs.unlinkSync(argv.geojson);
         }
+        if (fs.existsSync(tmpGeojson)) {
+            fs.unlinkSync(tmpGeojson);
+        }
+
     } else {
         argv.geojson = false;
     }
@@ -52,7 +62,7 @@ function cleanArguments(argv) {
             argv.mbtiles = false;
         }
     }
-    return argv;
+    return { 'argv': argv, 'tmpGeojson': tmpGeojson};
 }
 
 function trimStrings(strings) {
