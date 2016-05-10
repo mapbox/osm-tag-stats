@@ -1,0 +1,5 @@
+[
+    "all",
+    [ "==", "highway", "motorway_junction"],
+    ["has", "ref"]
+]
