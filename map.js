@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var ff = require('feature-filter');
+var featureCollection = require('turf-featurecollection');
 
 module.exports = function (data, tile, writeData, done) {
 
@@ -24,7 +25,8 @@ module.exports = function (data, tile, writeData, done) {
     });
 
     if (mapOptions.geojson && result.length > 0) {
-        fs.appendFileSync(mapOptions.geojson, JSON.stringify(result) + '\n');
+        var fc = featureCollection(result);
+        fs.appendFileSync(mapOptions.geojson, JSON.stringify(fc) + '\n');
     }
     done(null, osmID);
 };
