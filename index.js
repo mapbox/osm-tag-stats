@@ -19,6 +19,8 @@ var count = cleanArguments.argv.count,
     mbtilesPath = cleanArguments.argv.mbtiles,
     tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.argv.filter;
+
+
 var OSMID = [];
 
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
@@ -35,6 +37,11 @@ tileReduce({
         'dates': dates,
         'users': users,
         'tagFilter': tagFilter
+    }
+})
+.on('start', function () {
+    if (tmpGeojson) {
+        fs.openSync(tmpGeojson,'w');
     }
 })
 .on('reduce', function (id) {
