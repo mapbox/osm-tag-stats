@@ -55,8 +55,10 @@ tileReduce({
         console.log('Features total: %d', uniqueIDs.length);
     }
     if (geojson) {
-        gsm(tmpGeojson, geojson);
-        fs.unlinkSync(tmpGeojson);
-        fs.rmdirSync(tmpDir);
+        gsm(tmpGeojson, geojson, function() {
+            fs.closeSync(tmpFd);
+            fs.unlinkSync(tmpGeojson);
+            fs.rmdirSync(tmpDir);
+        });
     }
 });
