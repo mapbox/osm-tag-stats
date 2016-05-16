@@ -1,9 +1,10 @@
 'use strict';
 var path = require('path');
 var fs = require('fs');
+var mapboxDataTeam = require('mapbox-data-team');
 
 function cleanArguments(argv, tmpFilesDir) {
-    var mapboxDataTeam = ['ruthmaben', 'jinalfoflia', 'saikabhi', 'Jothirnadh', 'aarthykc', 'pratikyadav', 'Chetan_Gowda', 'oini', 'ramyaragupathy', 'nikhilprabhakar', 'srividya_c', 'PlaneMad', 'manings', 'nammala', 'poornibadrinath', 'geohacker', 'shvrm', 'bkowshik', 'sanjayb', 'Arunasank', 'Luis36995', 'samely', 'ediyes', 'RichRico', 'andygol', 'karitotp', 'ridixcr', 'calfarome', 'dannykath', 'Rub21', 'Aaron Lidman', 'abel801', 'lxbarth'];
+    var mapboxUsernames = mapboxDataTeam.getUsernames();
 
     //geojson
     if (argv.geojson) {
@@ -45,7 +46,7 @@ function cleanArguments(argv, tmpFilesDir) {
 
     //users
     if (argv.users && argv.users.toLowerCase() === 'mapbox') {
-        argv.users = mapboxDataTeam;
+        argv.users = mapboxUsernames;
     } else if (argv.users) {
         argv.users = argv.users.split(',');
         argv.users = trimStrings(argv.users);
