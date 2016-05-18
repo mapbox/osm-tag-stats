@@ -31,7 +31,7 @@ _Path to `--mbtiles` and either of `--geojson` or `--count` is required._
 
 ### Examples
 
-* `$osm-tag-stats --geojson=highway_primary.geojson --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
+* `osm-tag-stats --geojson=highway_primary.geojson --mbtiles='../latest.planet.mbtiles' --filter='filter/highway_primary.json' --users='Mapbox'`
 
 ```
 The filtered geojson has been written to highway_primary.geojson
