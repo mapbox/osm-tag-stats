@@ -18,8 +18,9 @@ var count = cleanArguments.argv.count,
     dates = cleanArguments.argv.dates,
     mbtilesPath = cleanArguments.argv.mbtiles,
     tmpGeojson = cleanArguments.tmpGeojson,
-    tagFilter = cleanArguments.argv.filter;
-var OSMID = [];
+    tagFilter = cleanArguments.argv.filter,
+    osmID = [],
+    tmpFd;
 
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
     help();
@@ -37,19 +38,26 @@ tileReduce({
         'tagFilter': tagFilter
     }
 })
+.on('start', function () {
+    if (tmpGeojson) {
+        tmpFd = fs.openSync(tmpGeojson,'w');
+    }
+})
 .on('reduce', function (id) {
     if (count) {
-        OSMID = OSMID.concat(id);
+        osmID = osmID.concat(id);
     }
 })
 .on('end', function () {
     if (count) {
-        var uniqueIDs = _.uniq(OSMID);
+        var uniqueIDs = _.uniq(osmID);
         console.log('Features total: %d', uniqueIDs.length);
     }
     if (geojson) {
-        gsm(tmpGeojson, geojson);
-        fs.unlinkSync(tmpGeojson);
-        fs.rmdirSync(tmpDir);
+        gsm(tmpGeojson, geojson, function() {
+            fs.closeSync(tmpFd);
+            fs.unlinkSync(tmpGeojson);
+            fs.rmdirSync(tmpDir);
+        });
     }
 });

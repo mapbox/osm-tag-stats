@@ -29,7 +29,6 @@ module.exports = function (data, tile, writeData, done) {
         fs.appendFileSync(mapOptions.tmpGeojson, JSON.stringify(fc) + '\n');
     }
     done(null, osmID);
-//    done(null, fs.existsSync(mapOptions.tmpGeojson));
 };
 
 function parseDates(dates) {
