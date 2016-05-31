@@ -13,11 +13,11 @@ module.exports = function (data, tile, writeData, done) {
     var users = mapOptions.users;
     var result = layer.features.filter(function (val) {
 
-        if ((!users || (users && users.indexOf(val.properties['_user']) > -1)) && (
-            !mapOptions.dates || (mapOptions.dates && val.properties['_timestamp'] && val.properties['_timestamp'] >= dates[0] && val.properties['_timestamp'] <= dates[1])) && (!filter || (filter && filter(val)))) {
+        if ((!users || (users && users.indexOf(val.properties['@user']) > -1)) && (
+            !mapOptions.dates || (mapOptions.dates && val.properties['@timestamp'] && val.properties['@timestamp'] >= dates[0] && val.properties['@timestamp'] <= dates[1])) && (!filter || (filter && filter(val)))) {
 
             if (mapOptions.count) {
-                osmID.push(val.properties['_osm_way_id'] ? val.properties['_osm_way_id'] : val.properties['_osm_node_id']);
+                osmID.push(val.properties['@osm_way_id'] ? val.properties['@osm_way_id'] : val.properties['@osm_node_id']);
             }
 
             return true;
