@@ -1,6 +1,6 @@
 {
   "name": "osm-tag-stats",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Filter OSM features, find stats and export GeoJSON using OSM QA Tiles",
   "main": "index.js",
   "scripts": {
