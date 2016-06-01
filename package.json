@@ -21,5 +21,20 @@
   },
   "bin": {
     "osm-tag-stats": "index.js"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mapbox/osm-tag-stats.git"
+  },
+  "keywords": [
+    "osm",
+    "tags",
+    "stats",
+    "osm-tag-stats"
+  ],
+  "author": "Mapbox",
+  "bugs": {
+    "url": "https://github.com/mapbox/osm-tag-stats/issues"
   }
 }
