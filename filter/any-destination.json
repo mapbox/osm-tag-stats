@@ -1,0 +1,10 @@
+[
+    "all",
+    [ "==", "highway", "motorway_link"],
+    [
+        "any",
+        ["has", "destination"],
+        ["has", "destination:ref"],
+        ["has", "destination:street"]
+    ]
+]
