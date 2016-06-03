@@ -17,7 +17,7 @@ module.exports = function (data, tile, writeData, done) {
             !mapOptions.dates || (mapOptions.dates && val.properties['@timestamp'] && val.properties['@timestamp'] >= dates[0] && val.properties['@timestamp'] <= dates[1])) && (!filter || (filter && filter(val)))) {
 
             if (mapOptions.count) {
-                osmID.push(val.properties['@osm_way_id'] ? val.properties['@osm_way_id'] : val.properties['@osm_node_id']);
+                osmID.push(val.properties['@id']);
             }
 
             return true;
