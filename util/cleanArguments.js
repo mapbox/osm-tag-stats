@@ -54,6 +54,10 @@ function cleanArguments(argv, tmpFilesDir) {
         argv.users = false;
     }
 
+    //bbox
+    if (argv.bbox && typeof argv.bbox === 'String') {
+        argv.bbox = argv.bbox.split(",").map(Number);
+    }
     //path
     if (!argv.mbtiles || (path.extname(argv.mbtiles) !== '.mbtiles')) {
         argv.mbtiles = false;

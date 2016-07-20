@@ -18,6 +18,7 @@ var count = cleanArguments.argv.count,
     mbtilesPath = cleanArguments.argv.mbtiles,
     tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.argv.filter,
+    bbox = cleanArguments.argv.bbox,
     osmID = new Set(),
     tmpFd;
 
@@ -26,6 +27,7 @@ if ((!geojson && !count) || !mbtilesPath || argv.help) {
 }
 
 tileReduce({
+    bbox: bbox,
     zoom: 12,
     map: path.join(__dirname, 'map.js'),
     sources: [{name: 'osm', mbtiles: mbtilesPath}],
