@@ -56,7 +56,10 @@ function cleanArguments(argv, tmpFilesDir) {
 
     //bbox
     if (argv.bbox) {
-        argv.bbox = argv['bbox'].split(",").map(Number);
+        argv.bbox = argv['bbox'].split(',').map(Number);
+        if (!(argv.bbox[0] >= -180 && argv.bbox[0] <= 180) || !(argv.bbox[2] >= -180 && argv.bbox[2] <= 180) || !(argv.bbox[1] >= -90 && argv.bbox[1] <= 90) || !(argv.bbox[3] >= -90 && argv.bbox[0] <= 90)) {
+            argv.bbox = false;
+        }
     }
     //path
     if (!argv.mbtiles || (path.extname(argv.mbtiles) !== '.mbtiles')) {
