@@ -5,7 +5,6 @@ var help = require('./util/help.js');
 var tileReduce = require('tile-reduce');
 var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
-var _ = require('underscore');
 var gsm = require('geojson-stream-merge');
 var fs = require('fs');
 
@@ -19,7 +18,7 @@ var count = cleanArguments.argv.count,
     mbtilesPath = cleanArguments.argv.mbtiles,
     tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.argv.filter,
-    osmID = [],
+    osmID = new Set(),
     tmpFd;
 
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
@@ -40,21 +39,22 @@ tileReduce({
 })
 .on('start', function () {
     if (tmpGeojson) {
-        tmpFd = fs.openSync(tmpGeojson,'w');
+        tmpFd = fs.openSync(tmpGeojson, 'w');
     }
 })
 .on('reduce', function (id) {
-    if (count) {
-        osmID = osmID.concat(id);
+    if (count && id) {
+        id.forEach(function(idElement) {
+            osmID.add(idElement);
+        });
     }
 })
 .on('end', function () {
     if (count) {
-        var uniqueIDs = _.uniq(osmID);
-        console.log('Features total: %d', uniqueIDs.length);
+        console.log('Features total: %d', osmID.size);
     }
     if (geojson) {
-        gsm(tmpGeojson, geojson, function() {
+        gsm(tmpGeojson, geojson, function () {
             fs.closeSync(tmpFd);
             fs.unlinkSync(tmpGeojson);
             fs.rmdirSync(tmpDir);
