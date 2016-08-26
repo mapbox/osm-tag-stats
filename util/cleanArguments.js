@@ -17,7 +17,7 @@ var mapboxDataTeam = require('mapbox-data-team');
 /**
  @typedef cleanArgument
  @type {object}
- @property {Argument} argv - arguments to file
+ @property {Argument} argv - validated and cleaned up input arguments
  @property {string} tmpGeojson - absolute path of geojson file
  */
 
