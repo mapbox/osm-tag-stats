@@ -37,7 +37,7 @@ module.exports = function (data, tile, writeData, done) {
 };
 
 /**
- @function parsesDates
+ @function parseDates
  @description Convert Date to timestamp. If endDate is not present, it is set as next immediate date to startDate.
  @param {string[]} strings
  @return {number[]}
