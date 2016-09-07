@@ -10,7 +10,6 @@
   "homepage": "https://github.com/mapbox/osm-tag-stats.git",
   "dependencies": {
     "feature-filter": "2.1.0",
-    "fs": "0.0.2",
     "geojson-stream-merge": "^2.0.0",
     "mapbox-data-team": "^1.0.0",
     "minimist": "^1.2.0",
