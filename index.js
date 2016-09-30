@@ -25,6 +25,9 @@ if ((!geojson && !count) || !mbtilesPath || argv.help) {
     help();
 }
 
+/**
+ A tile reduce script to filter OSM features and export them to GeoJSON.
+ */
 tileReduce({
     zoom: 12,
     map: path.join(__dirname, 'map.js'),

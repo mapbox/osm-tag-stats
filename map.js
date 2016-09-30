@@ -4,6 +4,11 @@ var fs = require('fs');
 var ff = require('feature-filter');
 var featureCollection = require('turf-featurecollection');
 
+/**
+ * Filters the OSM features in a single tile based on given filter.
+ * @module
+ * @type {number}
+ */
 module.exports = function (data, tile, writeData, done) {
 
     var filter = (mapOptions.tagFilter) ? ff(mapOptions.tagFilter) : false;
@@ -31,6 +36,12 @@ module.exports = function (data, tile, writeData, done) {
     done(null, osmID);
 };
 
+/**
+ @function parseDates
+ @description Convert Date to timestamp. If endDate is not present, it is set as next immediate date to startDate.
+ @param {string[]} strings
+ @return {number[]}
+ */
 function parseDates(dates) {
     var startDate = new Date(dates[0]);
     var endDate = new Date(dates[dates.length - 1]);
