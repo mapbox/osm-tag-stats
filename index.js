@@ -18,6 +18,9 @@ var count = cleanArguments.argv.count,
     mbtilesPath = cleanArguments.argv.mbtiles,
     tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.argv.filter,
+    bbox = cleanArguments.argv.bbox,
+    maxWorkers = cleanArguments.argv.maxWorkers,
+    tiles = cleanArguments.argv.tiles,
     osmID = new Set(),
     tmpFd;
 
@@ -32,6 +35,9 @@ tileReduce({
     zoom: 12,
     map: path.join(__dirname, 'map.js'),
     sources: [{name: 'osm', mbtiles: mbtilesPath}],
+    maxWorkers: maxWorkers,
+    bbox: bbox,
+    tiles: tiles,
     mapOptions: {
         'count': count,
         'tmpGeojson': tmpGeojson,
@@ -47,7 +53,7 @@ tileReduce({
 })
 .on('reduce', function (id) {
     if (count && id) {
-        id.forEach(function(idElement) {
+        id.forEach(function (idElement) {
             osmID.add(idElement);
         });
     }

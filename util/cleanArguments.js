@@ -88,6 +88,22 @@ function cleanArguments(argv, tmpFilesDir) {
             argv.mbtiles = false;
         }
     }
+
+    //bbox
+    if (argv.bbox) {
+        argv.bbox = JSON.parse(argv.bbox);
+        if (argv.bbox.length !== 4) {
+            throw new Error('BBox is invalid --bbox=[west, south, east, north]');
+        }
+    }
+
+    //tiles
+    if (argv.tiles) {
+        argv.tiles = JSON.parse(argv.tiles);
+        if (typeof(argv.tiles) !== 'object') {
+            throw new Error('Tiles is invalid --tiles=[[x, y, z]]');
+        }
+    }
     return {'argv': argv, 'tmpGeojson': tmpGeojson};
 }
 
