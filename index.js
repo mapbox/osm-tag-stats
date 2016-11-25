@@ -19,6 +19,7 @@ var count = cleanArguments.argv.count,
     tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.argv.filter,
     osmID = new Set(),
+    bboxVal = argv.bbox.split(","),
     tmpFd;
 
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
@@ -29,6 +30,7 @@ if ((!geojson && !count) || !mbtilesPath || argv.help) {
  A tile reduce script to filter OSM features and export them to GeoJSON.
  */
 tileReduce({
+    bbox: bboxVal,
     zoom: 12,
     map: path.join(__dirname, 'map.js'),
     sources: [{name: 'osm', mbtiles: mbtilesPath}],
