@@ -9,6 +9,7 @@
   "license": "ISC",
   "homepage": "https://github.com/mapbox/osm-tag-stats.git",
   "dependencies": {
+    "@turf/turf": "^5.1.6",
     "feature-filter": "2.1.0",
     "fs": "0.0.2",
     "geojson-stream-merge": "^2.0.0",

@@ -1,42 +1,30 @@
 'use strict';
 
-var fs = require('fs');
-var ff = require('feature-filter');
-var featureCollection = require('turf-featurecollection');
+const fs = require('fs');
+const featureCollection = require('turf-featurecollection');
+const turf = require('@turf/turf');
+const counties = require('./counties.json');
 
 module.exports = function (data, tile, writeData, done) {
+    const result = [];
+    const features = data.osm.osm.features.filter((feature) => feature.geometry.type === 'LineString');
 
-    var filter = (mapOptions.tagFilter) ? ff(mapOptions.tagFilter) : false;
-    var layer = data.osm.osm;
-    var osmID = (mapOptions.count) ? [] : null;
-    var dates = Boolean(mapOptions.dates) ? parseDates(mapOptions.dates) : false;
-    var users = mapOptions.users;
-    var result = layer.features.filter(function (val) {
-
-        if ((!users || (users && users.indexOf(val.properties['@user']) > -1)) && (
-            !mapOptions.dates || (mapOptions.dates && val.properties['@timestamp'] && val.properties['@timestamp'] >= dates[0] && val.properties['@timestamp'] <= dates[1])) && (!filter || (filter && filter(val)))) {
-
-            if (mapOptions.count) {
-                osmID.push(val.properties['@id']);
-            }
-
-            return true;
+    features.forEach((feature) => {
+        if (feature.geometry.type === 'LineString') {
+            counties.features.forEach((county) => {
+                if (turf.booleanContains(county, feature)) {
+                    feature.properties.county = county.properties.NAME;
+                    result.push(feature);
+                } else if (turf.lineIntersect(county, feature).features.length) {
+                    result.push(turf.lineSplit(feature, county));
+                }
+            });
         }
     });
 
-    if (mapOptions.tmpGeojson && result.length > 0) {
-        var fc = featureCollection(result);
+    if (mapOptions.tmpGeojson && result.length) {
+        const fc = featureCollection(result);
         fs.appendFileSync(mapOptions.tmpGeojson, JSON.stringify(fc) + '\n');
     }
-    done(null, osmID);
+    done();
 };
-
-function parseDates(dates) {
-    var startDate = new Date(dates[0]);
-    var endDate = new Date(dates[dates.length - 1]);
-    if (dates.length === 1) {
-        endDate.setDate((endDate.getDate() + 1));
-    }
-    //_timestamp in QA tiles is in seconds and not milliseconds
-    return [(startDate.getTime() / 1000), (endDate.getTime() / 1000)];
-}

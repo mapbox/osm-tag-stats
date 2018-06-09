@@ -19,7 +19,6 @@ var count = cleanArguments.argv.count,
     tmpGeojson = cleanArguments.tmpGeojson,
     tagFilter = cleanArguments.argv.filter,
     bbox = cleanArguments.argv.bbox,
-    osmID = new Set(),
     tmpFd;
 
 if ((!geojson && !count) || !mbtilesPath || argv.help) {
@@ -39,22 +38,13 @@ tileReduce({
         'tagFilter': tagFilter
     }
 })
-.on('start', function () {
+.on('start', () => {
     if (tmpGeojson) {
         tmpFd = fs.openSync(tmpGeojson, 'w');
     }
 })
-.on('reduce', function (id) {
-    if (count && id) {
-        id.forEach(function(idElement) {
-            osmID.add(idElement);
-        });
-    }
-})
-.on('end', function () {
-    if (count) {
-        console.log('Features total: %d', osmID.size);
-    }
+.on('reduce', () => {})
+.on('end', () => {
     if (geojson) {
         gsm(tmpGeojson, geojson, function () {
             fs.closeSync(tmpFd);
